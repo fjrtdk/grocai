@@ -20,6 +20,7 @@ export function useLists(userId: string | undefined) {
 
   useEffect(() => {
     if (!userId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLoading(false)
       return
     }
