@@ -23,7 +23,11 @@
   3. Runtime errors show a friendly error boundary UI instead of a blank white screen
   4. All pages show loading spinners/skeletons while data is being fetched
   5. Lists and pantry pages display helpful empty state messages when they have no items
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Deploy to Vercel (DEPLOY-01, DEPLOY-02)
+- [ ] 01-02-PLAN.md — Error boundary, loading states, empty states (POLISH-01, POLISH-02, POLISH-03)
 **UI hint**: yes
 
 ### Phase 2: CI/CD + Testing Foundation
@@ -77,7 +81,7 @@ Phase 1 (Deploy) ──> Phase 2 (CI/CD) ──> Phase 3 (AI Insights)
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Deploy Infrastructure | 0/0 | Not started | - |
+| 1. Deploy Infrastructure | 0/2 | Not started | - |
 | 2. CI/CD + Testing Foundation | 0/0 | Not started | - |
 | 3. AI Insights | 0/0 | Not started | - |
 
