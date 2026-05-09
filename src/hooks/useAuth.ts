@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signInWithPopup, signOut, type User } from 'firebase/auth'
+import { onAuthStateChanged, signInWithRedirect, signOut, type User } from 'firebase/auth'
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { auth, db, googleProvider } from '../lib/firebase'
@@ -37,7 +37,7 @@ export function useAuth() {
   }, [])
 
   const signInGoogle = async () => {
-    await signInWithPopup(auth, googleProvider)
+    await signInWithRedirect(auth, googleProvider)
   }
 
   const signOutUser = async () => {
