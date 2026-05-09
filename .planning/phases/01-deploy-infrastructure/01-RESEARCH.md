@@ -798,22 +798,13 @@ Breaking it down:
 | A1 | Error boundary must be a class component in React 19 | Error Boundary Implementation | If React 19 adds a functional error boundary API between training data and now, the class component still works (backward compatible). No risk. |
 | A2 | Vercel auto-detects Vite framework without vercel.json `framework` property | Vercel Deployment Sequence | If auto-detection fails, build fails. Add `"framework": null` (for "Other") or specify buildCommand/outputDirectory explicitly as fallback. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Firebase project configuration status**
-   - What we know: Env var values needed from Firebase Console. App references `import.meta.env.VITE_FIREBASE_*`.
-   - What's unclear: Do the actual Firebase project values exist? Has Authentication (Google Sign-In) been enabled?
-   - Recommendation: Planner should assume env var values need to be obtained before deployment, and include a verification step.
+1. **Firebase project configuration status** — RESOLVED: Plan 01-01 Task 2 blocks on user-provided env var values via a `checkpoint:human-action` gate. Values are added via `vercel env add` CLI. The app references `import.meta.env.VITE_FIREBASE_*` which Vite resolves at build time — if values are missing, `vite build` fails in the pre-deploy gate.
 
-2. **NVIDIA NIM API key availability**
-   - What we know: Key is required, stored as `NVIDIA_API_KEY`. Exposed in client bundle by design.
-   - What's unclear: Does the production API key exist? Is it rate-limited?
-   - Recommendation: Planner should flag this as a pre-requisite check before env var configuration step.
+2. **NVIDIA NIM API key availability** — RESOLVED: Plan 01-01 Task 2 includes `NVIDIA_API_KEY` in the same `checkpoint:human-action` gate, added with `--sensitive` flag to production only. Rate limiting is out of scope for deployment phase.
 
-3. **Vercel account/org availability**
-   - What we know: CLI is installed (logged in session exists).
-   - What's unclear: Is the `vercel whoami` session valid? Does the GitHub account (fjrtdk) have a Vercel org configured?
-   - Recommendation: Verify CLI authentication as the first step.
+3. **Vercel account/org availability** — RESOLVED: Plan 01-01 Task 1 runs `vercel link --repo`, which verifies CLI authentication and creates the Vercel project in one step. The plan-phase orchestrator confirmed the CLI session is valid (user: fjrtdk-9930, single personal team, no `--scope` needed).
 
 ## Sources
 
