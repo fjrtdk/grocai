@@ -13,15 +13,37 @@ import { AddItemSheet } from '../components/items/AddItemSheet'
 import { ShareDialog } from '../components/sharing/ShareDialog'
 import type { GroceryList } from '../types'
 
+function ListDetailSkeleton() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      <div className="flex items-center gap-3">
+        <div className="h-8 w-8 rounded bg-secondary" />
+        <div className="flex-1 space-y-2">
+          <div className="h-6 w-48 rounded bg-secondary" />
+          <div className="h-3 w-32 rounded bg-secondary" />
+        </div>
+        <div className="h-8 w-20 rounded-lg bg-secondary" />
+      </div>
+      <div className="space-y-2">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="h-14 rounded-lg bg-secondary" />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function ListDetail() {
   const { t } = useTranslation()
   const { id } = useParams()
   const navigate = useNavigate()
   const { user } = useAuth()
-  const { data: list } = useDocument<GroceryList>(`lists/${id}`)
-  const { items, addItem, toggleCheck, removeItem } = useListItems(id)
+  const { data: list, loading: listLoading } = useDocument<GroceryList>(`lists/${id}`)
+  const { items, addItem, toggleCheck, removeItem, loading: itemsLoading } = useListItems(id)
   const [showAdd, setShowAdd] = useState(false)
   const [showShare, setShowShare] = useState(false)
+
+  if (listLoading || itemsLoading) return <ListDetailSkeleton />
 
   const categories = [...new Set(items.map((i) => i.category))]
 

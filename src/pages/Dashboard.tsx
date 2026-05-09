@@ -10,14 +10,29 @@ import { InsightsBanner } from '../components/insights/InsightsBanner'
 import { ItemRow } from '../components/items/ItemRow'
 import { useListItems } from '../hooks/useListItems'
 
+function DashboardSkeleton() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      <div className="flex items-center justify-between">
+        <div className="h-8 w-32 rounded bg-secondary" />
+        <div className="h-8 w-24 rounded-lg bg-secondary" />
+      </div>
+      <div className="h-32 rounded-xl bg-secondary" />
+      <div className="h-48 rounded-xl bg-secondary" />
+    </div>
+  )
+}
+
 export function Dashboard() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { user } = useAuth()
-  const { lists, createList } = useLists(user?.uid)
+  const { lists, loading, createList } = useLists(user?.uid)
   const pinned = lists.filter((l) => l.pinned && !l.archived)
   const activeList = pinned[0] || lists.find((l) => !l.archived)
   const { items } = useListItems(activeList?.id)
+
+  if (loading) return <DashboardSkeleton />
 
   const handleCreateList = async () => {
     if (!user) return

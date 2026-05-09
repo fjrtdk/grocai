@@ -11,6 +11,21 @@ import { Input } from '../components/ui/input'
 import { Dialog } from '../components/ui/dialog'
 import { cn } from '../lib/utils'
 
+function ListsHomeSkeleton() {
+  return (
+    <div className="space-y-4 animate-pulse">
+      <div className="flex items-center justify-between">
+        <div className="h-8 w-32 rounded bg-secondary" />
+        <div className="h-8 w-24 rounded-lg bg-secondary" />
+      </div>
+      <div className="h-4 w-48 rounded bg-secondary" />
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="h-20 rounded-xl bg-secondary" />
+      ))}
+    </div>
+  )
+}
+
 export function ListsHome() {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -19,6 +34,8 @@ export function ListsHome() {
     useLists(user?.uid)
   const [showCreate, setShowCreate] = useState(false)
   const [newName, setNewName] = useState('')
+
+  if (loading) return <ListsHomeSkeleton />
 
   const pinned = lists.filter((l) => l.pinned && !l.archived)
   const active = lists.filter((l) => !l.pinned && !l.archived)

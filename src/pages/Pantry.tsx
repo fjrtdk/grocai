@@ -11,6 +11,27 @@ import { Badge } from '../components/ui/badge'
 import { cn, daysUntil } from '../lib/utils'
 import type { StorageArea } from '../types'
 
+function PantrySkeleton() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      <div className="flex items-center justify-between">
+        <div className="h-8 w-32 rounded bg-secondary" />
+        <div className="h-8 w-36 rounded-lg bg-secondary" />
+      </div>
+      <div className="flex gap-2">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="h-10 w-24 rounded-lg bg-secondary" />
+        ))}
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="h-32 rounded-xl bg-secondary" />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 const storageConfig: Record<StorageArea, { icon: any; labelKey: string }> = {
   køleskab: { icon: Refrigerator, labelKey: 'pantry.køleskab' },
   fryser: { icon: Snowflake, labelKey: 'pantry.fryser' },
@@ -22,8 +43,10 @@ export function Pantry() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { user } = useAuth()
-  const { items, removeItem } = usePantry(user?.uid)
+  const { items, loading, removeItem } = usePantry(user?.uid)
   const [activeTab, setActiveTab] = useState<StorageArea | 'all'>('all')
+
+  if (loading) return <PantrySkeleton />
 
   const storageAreas = Object.keys(storageConfig) as StorageArea[]
 
