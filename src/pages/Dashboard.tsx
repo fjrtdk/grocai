@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { Plus } from 'lucide-react'
+import { Plus, ClipboardList } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { useLists } from '../hooks/useLists'
 import { Card } from '../components/ui/card'
@@ -83,7 +83,9 @@ export function Dashboard() {
 
         {!activeList && (
           <Card className="text-center py-12">
-            <p className="text-muted-foreground mb-4">{t('list.noListsHint')}</p>
+            <ClipboardList className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+            <p className="text-muted-foreground mb-2">{t('list.noLists')}</p>
+            <p className="text-xs text-muted-foreground mb-4">{t('list.noListsHint')}</p>
             <Button onClick={handleCreateList}>
               <Plus size={16} />
               {t('list.createList')}

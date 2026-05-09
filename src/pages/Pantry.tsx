@@ -94,8 +94,13 @@ export function Pantry() {
 
         {filtered.length === 0 && (
           <Card className="text-center py-12">
+            <Package className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
             <p className="text-muted-foreground mb-2">{t('pantry.noItems')}</p>
-            <p className="text-xs text-muted-foreground">{t('pantry.noItemsHint')}</p>
+            <p className="text-xs text-muted-foreground mb-4">{t('pantry.noItemsHint')}</p>
+            <Button onClick={() => navigate('/scan')}>
+              <Plus size={16} />
+              {t('pantry.addToPantry')}
+            </Button>
           </Card>
         )}
 

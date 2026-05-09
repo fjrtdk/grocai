@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Plus, Share2 } from 'lucide-react'
+import { ArrowLeft, Plus, Share2, CheckCircle2 } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { useDocument } from '../hooks/useFirestore'
 import { useListItems } from '../hooks/useListItems'
@@ -102,7 +102,8 @@ export function ListDetail() {
 
         {items.length === 0 && (
           <Card className="text-center py-12">
-            <p className="text-muted-foreground mb-4">{t('item.noItems')}</p>
+            <CheckCircle2 className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+            <p className="text-muted-foreground mb-2">{t('item.allChecked')}</p>
             <Button onClick={() => setShowAdd(true)}>
               <Plus size={16} />
               {t('item.addItem')}
