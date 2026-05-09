@@ -5,7 +5,7 @@ status: draft
 shadcn_initialized: false
 preset: none
 created: 2026-05-09
-updated: 2026-05-09
+updated: 2026-05-09 (typography compressed per checker feedback)
 ---
 
 # Phase 1 — UI Design Contract
@@ -49,12 +49,11 @@ Exceptions: none — Tailwind v4 defaults used throughout
 | Role | Size | Weight | Line Height | Tailwind Class |
 |------|------|--------|-------------|----------------|
 | Body | 16px | 400 (regular) | 1.5 | `text-base` |
-| Label | 14px | 500 (medium) | 1.25 | `text-sm font-medium` |
-| Heading | 20px | 600 (semibold) | 1.25 | `text-xl font-semibold` |
-| Display | 24px | 700 (bold) | 1.2 | `text-2xl font-bold` |
-| Caption/Tag | 12px | 500 (medium) | 1.25 | `text-xs font-medium` |
+| Label | 14px | 600 (semibold) | 1.5 | `text-sm font-semibold` |
+| Heading | 20px | 600 (semibold) | 1.2 | `text-xl font-semibold` |
+| Display | 24px | 600 (semibold) | 1.2 | `text-2xl font-semibold` |
 
-Declared weights: 400 (regular), 500 (medium), 600 (semibold), 700 (bold) — verified against existing codebase patterns.
+Declared weights: 400 (regular), 600 (semibold) — compressed from 5→4 sizes and 4→2 weights per checker requirement. Pre-existing codebase patterns (`text-xs`, `font-medium`, `font-bold`) are grandfathered for existing components; new Phase 1 components (ErrorBoundary, skeletons, empty states) must use the declared 4-size, 2-weight scale.
 
 ---
 
