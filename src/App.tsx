@@ -26,7 +26,7 @@ function AppRoutes() {
 }
 
 export default function App() {
-  const { user, loading, signInGoogle } = useAuth()
+  const { user, loading, error, signInGoogle } = useAuth()
 
   if (loading) {
     return (
@@ -37,7 +37,7 @@ export default function App() {
   }
 
   if (!user) {
-    return <AuthPage onSignIn={signInGoogle} loading={loading} />
+    return <AuthPage onSignIn={signInGoogle} loading={loading} error={error} />
   }
 
   return (

@@ -4,9 +4,10 @@ import { Button } from '../components/ui/button'
 interface AuthPageProps {
   onSignIn: () => void
   loading: boolean
+  error?: string | null
 }
 
-export function AuthPage({ onSignIn, loading }: AuthPageProps) {
+export function AuthPage({ onSignIn, loading, error }: AuthPageProps) {
   const { t } = useTranslation()
 
   return (
@@ -16,6 +17,10 @@ export function AuthPage({ onSignIn, loading }: AuthPageProps) {
           <h1 className="text-3xl font-bold tracking-tight">{t('app.name')}</h1>
           <p className="text-muted-foreground text-sm">{t('auth.welcome')}</p>
         </div>
+
+        {error && (
+          <p className="text-sm text-destructive bg-destructive/10 rounded-lg p-3">{error}</p>
+        )}
 
         <Button onClick={onSignIn} disabled={loading} className="w-full" size="lg">
           {loading ? (
