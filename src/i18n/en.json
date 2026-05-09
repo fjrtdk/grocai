@@ -45,6 +45,7 @@
     "uncheckItem": "Undo",
     "deleteItem": "Remove",
     "noItems": "No items on this list",
+    "allChecked": "All items checked off",
     "addItemHint": "Scan barcode or type item name",
     "pieces": "pcs",
     "grams": "g",
@@ -143,5 +144,9 @@
     "search": "Search",
     "confirm": "Confirm",
     "dismiss": "Dismiss"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again."
   }
 }

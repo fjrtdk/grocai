@@ -45,6 +45,7 @@
     "uncheckItem": "Fortryd",
     "deleteItem": "Fjern",
     "noItems": "Ingen varer på listen",
+    "allChecked": "Alle varer er købt",
     "addItemHint": "Scan stregkode eller skriv varenavn",
     "pieces": "stk",
     "grams": "g",
@@ -143,5 +144,9 @@
     "search": "Søg",
     "confirm": "Bekræft",
     "dismiss": "Afvis"
+  },
+  "error": {
+    "title": "Noget gik galt",
+    "description": "Der opstod en uventet fejl. Prøv igen."
   }
 }
