@@ -1,0 +1,11 @@
+{
+  "auth": {
+    "providers": {
+      "googleSignIn": {
+        "enabled": true,
+        "oAuthBrandDisplayName": "GrocAI",
+        "supportEmail": "fjrtdk@gmail.com"
+      }
+    }
+  }
+}
