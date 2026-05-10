@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { Plus, ClipboardList } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { useLists } from '../hooks/useLists'
+import { usePantry } from '../hooks/usePantry'
+import { useListItems } from '../hooks/useListItems'
+import { useGenerateInsights } from '../hooks/useGenerateInsights'
 import { Card } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { AppShell } from '../components/layout/AppShell'
 import { InsightsBanner } from '../components/insights/InsightsBanner'
 import { ItemRow } from '../components/items/ItemRow'
-import { useListItems } from '../hooks/useListItems'
 
 function DashboardSkeleton() {
   return (
@@ -24,13 +26,16 @@ function DashboardSkeleton() {
 }
 
 export function Dashboard() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const { user } = useAuth()
   const { lists, loading, createList } = useLists(user?.uid)
   const pinned = lists.filter((l) => l.pinned && !l.archived)
   const activeList = pinned[0] || lists.find((l) => !l.archived)
   const { items } = useListItems(activeList?.id)
+  const { items: pantryItems } = usePantry(user?.uid)
+
+  useGenerateInsights(user?.uid, items, pantryItems, i18n.language)
 
   if (loading) return <DashboardSkeleton />
 
