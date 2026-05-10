@@ -2,9 +2,11 @@
 
 ## What This Is
 
-GrocAI is a Danish-first grocery shopping app with AI-powered features. Users create shared shopping lists, scan barcodes for product info and prices, manage their pantry with expiry tracking, and get smart shopping insights. Runs entirely in the browser as a PWA with Firebase backend.
+GrocAI is a Danish-first AI-powered grocery shopping PWA. Users create shared shopping lists with AI-powered categorization, scan barcodes for product info, manage their pantry with expiry tracking, and get smart shopping insights on their dashboard. Ships via CI/CD with test infrastructure.
 
 Built for personal use — the user and their family.
+
+**Current state:** v1.0 MVP shipped (all 8 requirements complete). Live at grocai-five.vercel.app.
 
 ## Core Value
 
@@ -30,30 +32,18 @@ Users can manage their grocery shopping from list creation to checkout, with AI 
 - ✓ Dark theme UI with Tailwind v4 — existing
 - ✓ Firestore security rules with member-based access — existing
 - ✓ Danish as default locale — existing
+- ✓ Vercel deployment with production URL — v1.0
+- ✓ SPA routing with vercel.json rewrites — v1.0
+- ✓ React error boundary with route-keyed reset — v1.0
+- ✓ Skeleton loading states on all pages — v1.0
+- ✓ Empty states on all list/pantry pages — v1.0
+- ✓ CI/CD pipeline (GitHub Actions: lint → test → build → deploy) — v1.0
+- ✓ Vitest + happy-dom test infrastructure (3 smoke tests) — v1.0
+- ✓ AI insights persisted to Firestore tips collection — v1.0
 
 ### Active
 
-- [ ] **DEPLOY-01**: Deploy to Vercel with production URL
-- [ ] **DEPLOY-02**: Firebase project configuration (auth, Firestore, env vars)
-- [ ] **DEPLOY-03**: NVIDIA NIM API key configured
-- [ ] **DEPLOY-04**: Production build pipeline working (tsc + vite build)
-- [ ] **TEST-01**: Unit tests for AI API wrapper (src/lib/ai.ts)
-- [ ] **TEST-02**: Unit tests for barcode lookup (src/lib/barcode.ts)
-- [ ] **TEST-03**: Unit tests for utility functions (src/lib/utils.ts)
-- [ ] **TEST-04**: Component tests for UI primitives
-- [ ] **TEST-05**: Hook tests for domain hooks
-- [ ] **CI-01**: GitHub Actions for automated lint + test + build
-- [ ] **CI-02**: Automated Vercel deploy on push
-- [ ] **POLISH-01**: Remove English locale, Danish-only
-- [ ] **POLISH-02**: Remove unused dependencies (Zustand, unused Radix, move openai to dependencies)
-- [ ] **POLISH-03**: Add error boundary and error logging
-- [ ] **POLISH-04**: Fix window.prompt for list creation
-- [ ] **POLISH-05**: Add 404 catch-all route
-- [ ] **POLISH-06**: Fix `list: any` type in ListsHome
-- [ ] **POLISH-07**: Add loading/empty/error states across pages
-- [ ] **FEAT-01**: Wire up activity log subcollection
-- [ ] **FEAT-02**: Wire up AI insight generation (tips collection is never written)
-- [ ] **FEAT-03**: Add lazy loading / code splitting for pages
+
 
 ### Out of Scope
 
@@ -70,22 +60,24 @@ Users can manage their grocery shopping from list creation to checkout, with AI 
 
 ### Codebase State
 
-The app is fully coded with React 19 + TypeScript + Vite + Tailwind v4. Firebase (Auth + Firestore) provides the backend. NVIDIA NIM API handles AI categorization and enrichment. Barcode lookups hit PriceTracker.dk, OpenFoodFacts, and OpenProductsFacts in parallel.
+v1.0 MVP shipped. The app is live at grocai-five.vercel.app with CI/CD pipeline (GitHub Actions: lint → test → build → deploy), Vitest test infrastructure (3 passing smoke tests), and AI insights persisted to Firestore.
 
-The codebase has a thorough codebase map with architecture, stack, structure, conventions, concerns, integrations, and testing docs in `.planning/codebase/`.
+Built with React 19 + TypeScript + Vite + Tailwind v4. Firebase (Auth + Firestore) provides the backend. NVIDIA NIM API handles AI categorization, enrichment, and insight generation. Barcode lookups hit PriceTracker.dk, OpenFoodFacts, and OpenProductsFacts in parallel.
 
-### Current Gaps
+### Known Technical Debt
 
-- No test infrastructure (zero tests)
-- No CI/CD pipeline
-- No deployment configuration
-- Firebase not connected (env vars missing)
-- Technical debt: unused deps, silent errors, missing features from SPEC
-- AI insights and activity log features defined but not wired up
+- No unit tests for AI API wrapper, barcode lookup, or utility functions
+- No component tests for UI primitives or hooks
+- No code splitting / lazy loading
+- English locale still bundled
+- Unused dependencies (Zustand, some Radix packages)
+- `window.prompt` used for list creation
+- Activity log subcollection not wired up
+- No 404 catch-all route
 
 ### Deployment Target
 
-Vercel (account needs setup). Static SPA with environment variables for Firebase and NVIDIA API.
+Vercel (production: grocai-five.vercel.app). Static SPA with environment variables for Firebase and NVIDIA API.
 
 ## Constraints
 
@@ -99,10 +91,10 @@ Vercel (account needs setup). Static SPA with environment variables for Firebase
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Deploy first | Get live ASAP before deep polish | — Pending |
-| Keep Firebase Auth | Already integrated, working, simple for personal use | — Pending |
-| Danish-only | Primary audience is Danish speaker | — Pending |
-| Personal PWA | No app store submission needed, sufficient for family use | — Pending |
+| Deploy first | Get live ASAP before deep polish | ✅ Done — v1.0 live at grocai-five.vercel.app |
+| Keep Firebase Auth | Already integrated, working, simple for personal use | ✅ Works with signInWithRedirect |
+| Danish-only | Primary audience is Danish speaker | ⚠️ English locale still bundled — tech debt |
+| Personal PWA | No app store submission needed, sufficient for family use | ✅ Live as PWA |
 
 ## Evolution
 
@@ -110,7 +102,7 @@ This document evolves at phase transitions and milestone boundaries.
 
 **After each phase transition** (via `/gsd-transition`):
 1. Requirements invalidated? → Move to Out of Scope with reason
-2. Requirements validated? → Move to Validated with phase reference
+2. Requirements validated? → Move to Validated with v1.0 tag
 3. New requirements emerged? → Add to Active
 4. Decisions to log? → Add to Key Decisions
 5. "What This Is" still accurate? → Update if drifted
@@ -122,4 +114,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-09 after initialization*
+*Last updated: 2026-05-10 after v1.0 milestone*
