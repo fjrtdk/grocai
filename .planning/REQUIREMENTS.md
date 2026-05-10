@@ -11,11 +11,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **DEPLOY-01**: App is deployable to Vercel with a single command
 - [ ] **DEPLOY-02**: SPA routing works on page refresh (vercel.json rewrites)
-- [ ] **DEPLOY-03**: Auto-deploy to Vercel on push to main branch
+- [x] **DEPLOY-03**: Auto-deploy to Vercel on push to main branch
 
 ### Testing Infrastructure
 
-- [ ] **TEST-00**: Vitest installed and configured with Vite integration
+- [x] **TEST-00**: Vitest installed and configured with Vite integration
 
 ### Polish
 
@@ -84,8 +84,8 @@ Deferred to future release.
 |-------------|-------|--------|
 | DEPLOY-01 | Phase 1 | Pending |
 | DEPLOY-02 | Phase 1 | Pending |
-| DEPLOY-03 | Phase 2 | Pending |
-| TEST-00 | Phase 2 | Pending |
+| DEPLOY-03 | Phase 2 | Complete |
+| TEST-00 | Phase 2 | Complete |
 | POLISH-01 | Phase 1 | Pending |
 | POLISH-02 | Phase 1 | Pending |
 | POLISH-03 | Phase 1 | Pending |

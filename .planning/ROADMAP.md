@@ -7,7 +7,7 @@
 ## Phases
 
 - [ ] **Phase 1: Deploy Infrastructure** - Get the app live on Vercel with production URL and basic UX polish
-- [ ] **Phase 2: CI/CD + Testing Foundation** - Automated deployment pipeline with test infrastructure
+- [x] **Phase 2: CI/CD + Testing Foundation** - Automated deployment pipeline with test infrastructure
 - [ ] **Phase 3: AI Insights** - AI-powered shopping insights generated and persisted to Firestore
 
 ## Phase Details
@@ -36,10 +36,14 @@ Plans:
 **Depends on**: Phase 1
 **Requirements**: DEPLOY-03, TEST-00
 **Success Criteria** (what must be TRUE):
-  1. Pushing to main branch triggers automatic Vercel deployment without manual intervention
-  2. `npm test` runs Vitest tests successfully with Vite integration configured
-  3. Test configuration supports running in CI environment (no interactive dependencies)
-**Plans**: TBD
+   1. Pushing to main branch triggers automatic Vercel deployment without manual intervention
+   2. `npm test` runs Vitest tests successfully with Vite integration configured
+   3. Test configuration supports running in CI environment (no interactive dependencies)
+**Plans**: 2 plans
+
+Plans:
+- [x] 02-01-PLAN.md — GitHub Actions CI/CD Pipeline (DEPLOY-03)
+- [x] 02-02-PLAN.md — Vitest Test Infrastructure (TEST-00)
 
 ### Phase 3: AI Insights
 **Goal**: AI-powered shopping insights are generated and persisted to Firestore
@@ -62,8 +66,8 @@ Plans:
 | POLISH-01 | Phase 1 | Pending |
 | POLISH-02 | Phase 1 | Pending |
 | POLISH-03 | Phase 1 | Pending |
-| DEPLOY-03 | Phase 2 | Pending |
-| TEST-00 | Phase 2 | Pending |
+| DEPLOY-03 | Phase 2 | Complete |
+| TEST-00 | Phase 2 | Complete |
 | FEAT-01 | Phase 3 | Pending |
 
 **Coverage:** 8/8 v1 requirements mapped ✓
@@ -82,7 +86,7 @@ Phase 1 (Deploy) ──> Phase 2 (CI/CD) ──> Phase 3 (AI Insights)
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Deploy Infrastructure | 0/2 | Not started | - |
-| 2. CI/CD + Testing Foundation | 0/0 | Not started | - |
+| 2. CI/CD + Testing Foundation | 2/2 | Complete | 2026-05-10 |
 | 3. AI Insights | 0/0 | Not started | - |
 
 ---
